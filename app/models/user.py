@@ -1,4 +1,3 @@
-import datetime
 from app import db
 from sqlalchemy import *
 from sqlalchemy.orm import relationship

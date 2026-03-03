@@ -2,7 +2,9 @@ from sqlalchemy import *
 from app import db
 from sqlalchemy.orm import relationship
 
+
 class Course(db.Model):
+  # Represents an online course with metadata used for enrollment and display.
   __tablename__ = "courses"
 
   # Columns

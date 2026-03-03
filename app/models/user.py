@@ -2,7 +2,9 @@ from app import db
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 
+
 class User(db.Model):
+  # Represents an application user with profile and auth-related fields.
   __tablename__ = "users"
 
   # Columns
@@ -17,7 +19,7 @@ class User(db.Model):
   is_admin = Column(Boolean, default=False, nullable=False)
   created_at = Column(DateTime, default=func.now, nullable=False)
 
-  # Relations
+  # Relations: link to enrollments and applications for cascade operations
   enrollments = relationship(
     "Enrollment",
     back_populates="user",

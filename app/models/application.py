@@ -3,7 +3,9 @@ from sqlalchemy import *
 from app import db
 from sqlalchemy.orm import relationship
 
+
 class Application(db.Model):
+  # Represents a job application by a user for a specific job.
   __tablename__ = "applications"
 
   # Columns
@@ -13,7 +15,7 @@ class Application(db.Model):
   applied_at = Column(DateTime, default=func.now, nullable=False)
   status = Column(String(50), nullable=False)
 
-  # Indexes
+  # Indexes ensure uniqueness of (user, job) and speed lookups.
   __table_args__ = (
     UniqueConstraint("user_id", "job_id", name="uq_user_job"),
     Index("ix_user_job", "user_id", "job_id"),

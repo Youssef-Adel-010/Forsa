@@ -3,7 +3,9 @@ from app import db
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 
+
 class Enrollment(db.Model):
+  # Tracks a user's progress in a course (watched videos, completion state).
   __tablename__ = "enrollments"
 
   # Columns
@@ -15,7 +17,7 @@ class Enrollment(db.Model):
   is_completed = Column(Boolean, default=False, nullable=False)
   enrolled_at = Column(DateTime, default=func.now, nullable=False)
 
-  # Indexes
+  # Indexes to enforce uniqueness and speed lookups for (user, course)
   __table_args__ = (
     UniqueConstraint("user_id", "course_id", name="uq_user_course"),
     Index("ix_user_course", "user_id", "course_id"),

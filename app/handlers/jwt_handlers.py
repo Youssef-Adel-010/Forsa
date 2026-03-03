@@ -4,7 +4,11 @@ from app.models.blocklist import Blocklist
 from app.responses.error_response import ErrorsResponse
 from app import db
 
+
 def register_jwt_helper(jwt: JWTManager):
+  # Register JWT callbacks to control how tokens are validated and errors returned.
+  # The helpers below translate JWT events into standardized error responses or
+  # provide user lookup and blocklist checks.
   def create_error_response(status_code, message, details):
     response = ErrorsResponse(
       status_code=status_code,
@@ -15,11 +19,13 @@ def register_jwt_helper(jwt: JWTManager):
 
   @jwt.user_lookup_loader
   def user_lookup(_jwt_headers, jwt_data):
+    # Given JWT data, return associated user instance (optional, commented).
     identity = jwt_data['sub']
     # return UserRepository(db).get_user_by_username(identity)
 
   @jwt.token_in_blocklist_loader
   def check_if_token_in_blocklist(jwt_header, jwt_payload):
+    # Check if token `jti` exists in Blocklist table (revoked tokens).
     jti = jwt_payload['jti']
     return db.session.query(Blocklist).filter_by(jti=jti).one_or_none()
 

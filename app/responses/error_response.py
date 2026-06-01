@@ -1,5 +1,4 @@
 class ErrorsResponse:
-  # Standardized error response wrapper used by registered error handlers.
   def __init__(self,
     status_code=None,
     message=None,

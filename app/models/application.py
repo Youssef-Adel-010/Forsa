@@ -5,17 +5,16 @@ from sqlalchemy.orm import relationship
 
 
 class Application(db.Model):
-  # Represents a job application by a user for a specific job.
   __tablename__ = "applications"
 
   # Columns
   id = Column(Integer, primary_key=True)
   user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
   job_id = Column(Integer, ForeignKey("jobs.id", ondelete="CASCADE"), nullable=False)
-  applied_at = Column(DateTime, default=func.now, nullable=False)
+  applied_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
   status = Column(String(50), nullable=False)
 
-  # Indexes ensure uniqueness of (user, job) and speed lookups.
+  # Indexes
   __table_args__ = (
     UniqueConstraint("user_id", "job_id", name="uq_user_job"),
     Index("ix_user_job", "user_id", "job_id"),

@@ -5,7 +5,6 @@ from sqlalchemy.orm import relationship
 
 
 class Job(db.Model):
-  # Represents an open job position that users can apply to.
   __tablename__ = "jobs"
 
   # Columns
@@ -19,9 +18,9 @@ class Job(db.Model):
   salary = Column(DECIMAL(10, 2), nullable=False)
   location = Column(String(255), nullable=False)
   experience_level = Column(String(100), nullable=False)
-  created_at = Column(DateTime, default=func.now, nullable=False)
+  created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
 
-  # Relations: applications pointing back to this Job
+  # Relations
   applications = relationship(
     "Application",
     back_populates="job",

@@ -1,5 +1,4 @@
 class ApiResponse:
-  # Simple wrapper to format successful API responses into a consistent dict.
   def __init__(self,
     status_code,
     message,

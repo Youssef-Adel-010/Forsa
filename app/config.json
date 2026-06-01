@@ -3,5 +3,10 @@
   "SQLALCHEMY_DATABASE_URI": "sqlite:///Forsa.sqlite3",
   "SQLALCHEMY_TRACK_MODIFICATIONS": false,
   "SECRET_KEY": "k4saV3abJgTrlqLcFdNNUI3PSlUW1L9OphD5W2ZJ7oPQ9",
-  "JWT_SECRET_KEY": "tnith1cFAojvtcFAoFhhjvtjvtcFAo1uphHhjvtcFAo1AqfCE"
+  "JWT_SECRET_KEY": "tnith1cFAojvtcFAoFhhjvtjvtcFAo1uphHhjvtcFAo1AqfCE",
+  "JWT_TOKEN_LOCATION": ["headers"],
+  "JWT_HEADER_NAME": "Authorization",
+  "JWT_HEADER_TYPE": "Bearer",
+  "UPLOAD_FOLDER": "static/cvs",
+  "ALLOWED_EXTENSIONS": ["pdf", "doc", "docx"]
 }

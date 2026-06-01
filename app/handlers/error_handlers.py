@@ -3,8 +3,6 @@ from app.responses.error_response import ErrorsResponse
 
 
 def register_error_handlers(app):
-  # Central place to register application-level error handlers.
-  # Each handler builds a standardized `ErrorsResponse` and returns JSON.
   def create_error_response(status_code, message, details):
     return jsonify(ErrorsResponse(status_code, message, details).to_dict()), status_code
 
